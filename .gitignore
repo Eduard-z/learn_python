@@ -21,3 +21,22 @@ $RECYCLE.BIN/
 # =========================
 # Operating System Files
 # =========================
+
+# Pycharm project files
+.idea/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+virt-env/
+test-env/
+ENV/
+env.bak/
+venv.bak/
