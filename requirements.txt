@@ -1,2 +1,4 @@
 requests==2.26.0
 flake8==4.0.1
+html2text
+bs4

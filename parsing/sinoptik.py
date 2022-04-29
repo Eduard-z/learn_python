@@ -1,14 +1,9 @@
-import requests
-import html2text
-import bs4
-s=requests.get('https://24score.pro/')
-d = html2text.HTML2Text().handle(s.text)
-print(d, file = open("qqq.txt", "w", encoding="utf-8"))
+import requests, bs4
 
-s=requests.get('https://sinoptik.com.ru/погода-москва')
-b=bs4.BeautifulSoup(s.text, "html.parser")
-p3=b.select('.temperature .p3')
-pogoda1=p3[0].getText()
+s=requests.get('https://sinoptik.com.ru/погода-москва') # сперва мы получили в переменную s код веб страницы в виде HTML
+b=bs4.BeautifulSoup(s.text, "html.parser")              # преобразовали этот код в объект для парсинга
+p3=b.select('.temperature .p3')                         # Команда select возвращает список из всех найденных тегов
+pogoda1=p3[0].getText()                                 # с заданным селектором
 p4=b.select('.temperature .p4')
 pogoda2=p4[0].getText()
 p5=b.select('.temperature .p5')
@@ -20,4 +15,4 @@ print('Днём :' + pogoda3 + ' ' + pogoda4)
 p=b.select('.rSide .description')
 pogoda=p[0].getText()
 print(pogoda.strip())
-
+print(s.status_code, s.encoding, s.headers["Content-Type"], s.cookies)
