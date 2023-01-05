@@ -34,11 +34,11 @@ def write_csv(data):
 
 def get_page_data(html):
     soup = BeautifulSoup(html, 'lxml')
-    divs = soup.find('div', class_='snippet-list')
-    ads = divs.find_all('div', class_='item__line')
+    divs = soup.find('div', class_='items-items-kAJAg')
+    ads = divs.find_all('div', class_='iva-item-root-_lk9K')
     for ad in ads:
         try:
-            div = ad.find('div', class_='description').find('h3')
+            div = ad.find('div', class_='title-root-zZCwT').find('h3')
             if 'htc' not in div.text.lower():
                 continue
             else:
@@ -46,8 +46,8 @@ def get_page_data(html):
         except:
             title = ''
         try:
-            div = ad.find('div', class_='description').find('h3')
-            url = "https://avito.ru" + div.find('a').get('href')
+            a = ad.find('div', class_='title-root-zZCwT')
+            url = "https://avito.ru" + a.find('a').get('href')
         except:
             url = ''
         try:
@@ -56,13 +56,13 @@ def get_page_data(html):
             price = ''
         try:
             div = ad.find('div', class_='data')
-            metro = div.find('span', class_='item-address-georeferences-item__content').text.strip()
+            metro = div.find('span', class_='geo-root-zPwRk').text.strip()
         except:
             metro = ''
-        data = {'title':title,
-                'price':price,
-                'metro':metro,
-                'url':url}
+        data = {'title': title,
+                'price': price,
+                'metro': metro,
+                'url': url}
         write_csv(data)
 
 
