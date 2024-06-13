@@ -4,8 +4,8 @@ repslist = range(reps)
 
 
 def timer(func, *pargs, **kargs):
-    start = time.clock()
+    start = time.perf_counter()
     for i in repslist:
         ret = func(*pargs, **kargs)
-    elapsed = time.clock() - start
+    elapsed = time.perf_counter() - start
     return (elapsed, ret)
